@@ -8,7 +8,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
+#include "../main.h"
 
 struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2) {
     struct ListNode *lSum = NULL;
