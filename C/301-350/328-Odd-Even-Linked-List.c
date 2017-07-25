@@ -12,7 +12,7 @@
  *  The first node is considered odd, the second node even and so on ...
  */
 #include <stdio.h>
-#include "../headers/problem_301_350.h"
+#include "../main.h"
 
 struct ListNode *oddEvenList(struct ListNode *head) {
     if (head == NULL || head->next == NULL || head->next->next == NULL) {
