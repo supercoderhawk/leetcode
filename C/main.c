@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "main.h"
 #include "headers/problem_1_50.h"
+#include "headers/problem_51_100.h"
 #include "headers/problem_151_200.h"
 #include "headers/problem_201_250.h"
 #include "headers/problem_301_350.h"
@@ -41,13 +42,42 @@ void test_1_50() {
     // testTwoSum();
     // testAddTwoNumbers();
     // testLengthOfLongestSubstring();
+    // testFindMedianSortedArrays();
     // testLongestPalindrome();
     // testConvert();
     // testReverse();
     // testMyAtoi();
     // testIsPalindrome();
-    /// testConvert();
-    testMaxArea();
+    // testConvert();
+    // testMaxArea();
+    // testLongestCommonPrefix();
+    // testThreeSum();
+    // testLetterCombinations();
+    // testFourSum();
+    // testIsValid();
+    // testMergeTwoLists();
+    // testGenerateParenthesis();
+    // testMergeKLists();
+    // testRemoveDuplicates();
+    // testStrStr();
+    // testDivide();
+    // testRomanToInt();
+    // testLongestValidParentheses();
+    // testSearch();
+    // testSearchRange();
+    // testIsValidSudoku();
+    // testFirstMissingPositive();
+    // testTrap();
+    // testIsMatch();
+    // testIsWildcardMatch();
+    // testPermute();
+    // testRotate();
+    // testCountAndSay();
+    testMyPow();
+}
+
+void test_51_100() {
+    testMaxSubArray();
 }
 
 void test_151_200() {
@@ -64,6 +94,7 @@ void test_301_350() {
 
 //
 int main(int argc, char *argv[]) {
-    test_1_50();
+    // test_1_50();
+    test_51_100();
     // test_151_200();
 }
