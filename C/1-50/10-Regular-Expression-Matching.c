@@ -23,9 +23,29 @@
 #include "../main.h"
 #include <stdio.h>
 
-bool isMatch(char* s, char* p) {
-    if(p == NULL || *p){
-        return *s;
+bool isMatch(char *s, char *p) {
+    if (p == NULL || !*p) {
+        return s == NULL || !*s;
+    }
+    if (s == NULL || !*s) {
+        char *str = p;
+        while (*str && str[1]) {
+            if (str[1] != '*')
+                return false;
+            str += 2;
+        }
+        return *str ? false : true;
     }
 
+    if (p[1] == '*')
+        return isMatch(s, p + 2) || p != NULL && *p && (s[0] == p[0] || p[0] == '.') && isMatch(s + 1, p);
+    else
+        return p != NULL && *p && (s[0] == p[0] || p[0] == '.') && isMatch(s + 1, p + 1);
+
+}
+
+void testIsMatch() {
+    char *s = "aa";
+    char *p = ".*c";
+    printf("%d", isMatch(s, p));
 }
