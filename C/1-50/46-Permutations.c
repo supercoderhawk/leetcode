@@ -15,37 +15,52 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-int** permute(int* nums, int numsSize, int* returnSize) {
-    *returnSize = 0;
-    if(numsSize == 0)
-        return NULL;
-    *returnSize = 1;
-    
-    for(int i = 1; i <=numsSize;i++)
-        *returnSize *= i;
 
-    int ** result = malloc(sizeof(int*)**returnSize);
-    for(int i = 0;i < *returnSize;i++)
-        result[i] = malloc(sizeof(int)*numsSize);
-    int start = 0,index = start,cur=*returnSize;
-    for(int i = 0; i <numsSize;i++){
-            index = start-1;
-        cur/=numsSize;
-        for(int j =0; j<*returnSize;j++){
-            result[j][i] = nums[++index%numsSize];
+void backtrack(int **result, int *rowIndex, int *row, int colIndex, int *nums, int numsSize) {
+    if (colIndex == numsSize) {
+        int *r = malloc(sizeof(int) * numsSize);
+        for (int i = 0; i < numsSize; ++i) {
+            r[i] = row[i];
         }
-        start++;
+
+        result[(*rowIndex)++] = r;
+        return;
     }
+    for (int i = 0; i < numsSize; ++i) {
+        int j;
+        for (j = 0; j < colIndex; ++j) {
+            if (nums[i] == row[j])
+                break;
+        }
+        if (j != colIndex)
+            continue;
+        row[colIndex] = nums[i];
+        backtrack(result, rowIndex, row, colIndex + 1, nums, numsSize);
+    }
+}
+
+int **permute(int *nums, int numsSize, int *returnSize) {
+    *returnSize = 0;
+    if (numsSize == 0)
+        return NULL;
+
+    for (int i = 1; i <= numsSize; i++)
+        *returnSize *= i;
+    int **result = malloc(sizeof(int *) * (*returnSize)), *row = malloc(sizeof(int) * numsSize);
+
+    *returnSize = 0;
+    backtrack(result, returnSize, row, 0, nums, numsSize);
+    free(row);
 
     return result;
 }
 
-void testPermute(){
-    int a[] = {1,2,3},count = 0;
-    int** result = permute(a,3,&count);
-    for(int i = 0; i <count;i++){
-        for(int j =0 ;j<3;j++){
-            printf("%d,",result[i][j]);
+void testPermute() {
+    int a[] = {1, 2, 3, 4}, count = 1, size = 0;
+    int **result = permute(a, count, &size);
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < count; j++) {
+            printf("%d,", result[i][j]);
         }
         printf("\n");
     }
