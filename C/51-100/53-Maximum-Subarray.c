@@ -7,22 +7,18 @@
  */
 #include <stdio.h>
 #include <limits.h>
-int maxSubArray(int* nums, int numsSize) {
-    if(numsSize == 1)
-        return nums[0];
-    int sum=0,maxSum = 0;
-    for (int i = 0; i < numsSize; ++i) {
-        sum+=nums[i];
-        if(sum>maxSum)
-            maxSum = sum;
-        else if(sum<0)
-            sum = 0;
+
+int maxSubArray(int *nums, int numsSize) {
+    int maxSoFar = nums[0], maxEndingHere = nums[0];
+    for (int i = 1; i < numsSize; ++i) {
+        maxEndingHere = maxEndingHere < 0 ? nums[i] : (maxEndingHere + nums[i]);
+        maxSoFar = maxSoFar > maxEndingHere ? maxSoFar : maxEndingHere;
     }
-    return maxSum;
+    return maxSoFar;
 }
 
-void testMaxSubArray(){
+void testMaxSubArray() {
     // int a[] = {-2,1,-3,4,-1,2,1,-5,4};
-    int a[] = {-2,-1};
-    printf("%d",maxSubArray(a,sizeof(a)/sizeof(int)));
+    int a[] = {-2, -1};
+    printf("%d", maxSubArray(a, sizeof(a) / sizeof(int)));
 }
