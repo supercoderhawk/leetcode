@@ -44,6 +44,10 @@ bool isPalindrome(int x);
 void testIsPalindrome();
 
 // problem 11
+bool isMatch(char* s, char* p);
+void testIsMatch();
+
+// problem 11
 int maxArea(int* height, int heightSize);
 void testMaxArea();
 
@@ -111,7 +115,7 @@ void testSearchRange();
 bool isValidSudoku(char **board, int boardRowSize, int boardColSize);
 void testIsValidSudoku();
 
-// problem
+// problem 38
 char* countAndSay(int n);
 void testCountAndSay();
 

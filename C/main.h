@@ -17,4 +17,9 @@ struct ListNode *createList(const int *vals, int count);
 
 void printList(struct ListNode *l);
 
+struct Interval {
+    int start;
+    int end;
+};
+
 #endif //C_MAIN_H

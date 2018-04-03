@@ -73,11 +73,19 @@ void test_1_50() {
     // testPermute();
     // testRotate();
     // testCountAndSay();
-    testMyPow();
+    // testMyPow();
+    testIsMatch();
 }
 
 void test_51_100() {
-    testMaxSubArray();
+    // testMaxSubArray();
+    // testSpiralOrder();
+    // testCanJump();
+    // testUniquePaths();
+    // testPlusOne();
+    // testMySqrt();
+    // testClimbStairs();
+    testSetZeroes();
 }
 
 void test_151_200() {
