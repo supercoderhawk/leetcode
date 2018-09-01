@@ -14,3 +14,8 @@ def print_linked_list(head):
             s += '->'
         node = node.next
     print(s)
+
+class Interval:
+    def __init__(self, s=0, e=0):
+        self.start = s
+        self.end = e

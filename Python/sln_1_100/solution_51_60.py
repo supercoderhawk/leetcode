@@ -1,6 +1,25 @@
 # -*- coding: UTF-8 -*-
+from itertools import permutations
+from common_utils import Interval
 
 class Solution_51_60:
+    def solveNQueens(self, n):
+        """
+        51
+        :type n: int
+        :rtype: List[List[str]]
+        """
+        outputs = []
+        for candidate in permutations(range(0, n)):
+            left_triangle = {v - i for i, v in enumerate(candidate)}
+            right_triangle = {v + i for i, v in enumerate(candidate)}
+            if len(left_triangle) == len(right_triangle) == n:
+                output = []
+                for queen in candidate:
+                    output.append('.' * queen + 'Q' + '.' * (n - 1 - queen))
+                outputs.append(output)
+        return outputs
+
     def spiralOrder(self, matrix):
         """
         problem 54 - Spiral Matrix
@@ -41,7 +60,26 @@ class Solution_51_60:
             curr_direction = (curr_direction + 1) % 4
 
         return res
-
+    def merge(self, intervals):
+        """
+        56
+        :type intervals: List[Interval]
+        :rtype: List[Interval]
+        """
+        intervals = sorted(intervals, key=lambda i: i.start)
+        new_intervals = []
+        last_end = -1
+        last_start = -1
+        for iterval in intervals:
+            start, end = iterval.start, iterval.end
+            if new_intervals and last_end >= start:
+                new_start = start if start < last_start else last_start
+                new_end = end if end > last_end else last_end
+                new_intervals.pop(-1)
+                start, end = new_start, new_end
+            new_intervals.append(Interval(start, end))
+            last_start, last_end = start, end
+        return new_intervals
     def lengthOfLastWord(self, s):
         """
         58

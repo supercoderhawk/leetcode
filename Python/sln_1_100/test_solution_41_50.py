@@ -1,5 +1,5 @@
 from unittest import TestCase
-from solution_41_50 import Solution_41_50
+from sln_1_100.solution_41_50 import Solution_41_50
 
 
 # -*- coding: UTF-8 -*-
