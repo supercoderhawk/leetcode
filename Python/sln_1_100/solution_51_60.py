@@ -41,3 +41,30 @@ class Solution_51_60:
             curr_direction = (curr_direction + 1) % 4
 
         return res
+
+    def lengthOfLastWord(self, s):
+        """
+        58
+        :type s: str
+        :rtype: int
+        """
+        if len(s) <= 1:
+            if not s or s == ' ':
+                return 0
+            else:
+                return 1
+        start = end = len(s)
+        index = len(s) - 2
+        last_ch = s[-1]
+        while index >= 0:
+            cur_ch = s[index]
+            if last_ch == ' ' and cur_ch != ' ':
+                end = index + 1
+            elif cur_ch == ' ' and last_ch != ' ':
+                start = index + 1
+                break
+            if index == 0 and cur_ch != ' ':
+                start = index
+            last_ch = cur_ch
+            index -= 1
+        return end - start
