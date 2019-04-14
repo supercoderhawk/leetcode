@@ -2,6 +2,7 @@
 from itertools import permutations
 from common_utils import Interval
 
+
 class Solution_51_60:
     def solveNQueens(self, n):
         """
@@ -60,6 +61,7 @@ class Solution_51_60:
             curr_direction = (curr_direction + 1) % 4
 
         return res
+
     def merge(self, intervals):
         """
         56
@@ -80,6 +82,7 @@ class Solution_51_60:
             new_intervals.append(Interval(start, end))
             last_start, last_end = start, end
         return new_intervals
+
     def lengthOfLastWord(self, s):
         """
         58
@@ -106,3 +109,29 @@ class Solution_51_60:
             last_ch = cur_ch
             index -= 1
         return end - start
+
+    def generateMatrix(self, n):
+        """
+        59
+        :param n:
+        :return:
+        """
+        x, y = 0, -1
+        directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+        steps = [n, n - 1]
+
+        val = 1
+        matrix = [[0] * n for _ in range(n)]
+        direction_index = 0
+
+        while steps[direction_index % 2]:
+            curr_direction = directions[direction_index]
+            for _ in range(steps[direction_index % 2]):
+                x += curr_direction[0]
+                y += curr_direction[1]
+                matrix[x][y] = val
+                val += 1
+            steps[direction_index % 2] -= 1
+            direction_index = (direction_index + 1) % 4
+
+        return matrix
