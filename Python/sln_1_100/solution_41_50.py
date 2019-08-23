@@ -1,6 +1,23 @@
 # -*- coding: UTF-8 -*-
 
 class Solution_41_50:
+    def multiply(self, num1: str, num2: str) -> str:
+        """
+        43
+        Given two non-negative integers num1 and num2 represented as strings,
+        return the product of num1 and num2, also represented as a string.
+        :param num1:
+        :param num2:
+        :return:
+        """
+        mul_ret = 0
+        for idx1, digit1 in enumerate(num1[::-1]):
+            val1 = (ord(digit1) - ord('0')) * 10 ** idx1
+            for idx2, digit2 in enumerate(num2[::-1]):
+                val2 = (ord(digit2) - ord('0')) * 10 ** idx2
+                mul_ret += val1 * val2
+        return str(mul_ret)
+
     def permute(self, nums):
         """
         problem 46
