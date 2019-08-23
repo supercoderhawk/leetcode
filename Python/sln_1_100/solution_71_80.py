@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from typing import List
+import copy
+import math
+
+
 class Solution_71_80(object):
     def simplifyPath(self, path):
         """
@@ -31,3 +36,27 @@ class Solution_71_80(object):
                 final_path_segments.append(segment)
 
         return '/' + '/'.join(final_path_segments)
+
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        """
+        77
+        :param n:
+        :param k:
+        :return:
+        """
+
+        results = []
+
+        def backtrace(res=[]):
+            if len(res) == k:
+                results.append(res)
+            else:
+                if not res:
+                    m = 1
+                else:
+                    m = res[-1] + 1
+                for i in range(m, n + 1):
+                    backtrace(res + [i])
+
+        backtrace()
+        return results
