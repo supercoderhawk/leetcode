@@ -24,7 +24,7 @@ class Solution_41_50:
         for n in nums[1:]:
             old_res = res
             res = []
-            print(old_res)
+
             for l in old_res:
                 res.extend(list(map(lambda i: l[:i] + [n] + l[i:], range(len(l) + 1))))
         return res
