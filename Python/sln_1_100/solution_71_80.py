@@ -7,6 +7,7 @@ import math
 class Solution_71_80(object):
     def simplifyPath(self, path):
         """
+        71
         :type path: str
         :rtype: str
         """
@@ -36,6 +37,49 @@ class Solution_71_80(object):
                 final_path_segments.append(segment)
 
         return '/' + '/'.join(final_path_segments)
+
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        """
+        74
+        :param matrix:
+        :param target:
+        :return:
+        """
+        if not matrix:
+            return False
+        if not matrix[0]:
+            return False
+        row = len(matrix) - 1
+        col = len(matrix[0]) - 1
+
+        def binary_search(func, l):
+            left = 0
+            right = l
+            if func(0) >= target:
+                return 0
+            elif func(l) <= target:
+                return l
+            else:
+                mid = (left + right) // 2
+                while left < mid:
+                    mid_val = func(mid)
+                    if mid_val < target:
+                        left = mid
+                    elif mid_val > target:
+                        right = mid
+                    else:
+                        return mid
+                    mid = (left + right) // 2
+
+            return left
+
+        row_index = binary_search(lambda i: matrix[i][0], row)
+        if matrix[row_index][0] == target:
+            return True
+        col_index = binary_search(lambda i: matrix[row_index][i], col)
+        if matrix[row_index][col_index] == target:
+            return True
+        return False
 
     def combine(self, n: int, k: int) -> List[List[int]]:
         """

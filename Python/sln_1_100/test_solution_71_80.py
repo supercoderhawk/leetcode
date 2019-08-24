@@ -15,6 +15,24 @@ class TestSolution_71_80(TestCase):
         self.assertEqual(self.sln.simplifyPath('///'), '/')
         self.assertEqual(self.sln.simplifyPath('/...'), '/...')
 
+    def test_search_martrix(self):
+        matrix = [
+            [1, 3, 5, 7],
+            [10, 11, 16, 20],
+            [23, 30, 34, 50]
+        ]
+        self.assertEqual(self.sln.searchMatrix(matrix, 3), True)
+        self.assertEqual(self.sln.searchMatrix(matrix, 7), True)
+        self.assertEqual(self.sln.searchMatrix(matrix, 11), True)
+        self.assertEqual(self.sln.searchMatrix(matrix, 50), True)
+        self.assertEqual(self.sln.searchMatrix(matrix, 8), False)
+        self.assertEqual(self.sln.searchMatrix(matrix, 100), False)
+        self.assertEqual(self.sln.searchMatrix(matrix, 23), True)
+        self.assertEqual(self.sln.searchMatrix(matrix, 0), False)
+        self.assertEqual(self.sln.searchMatrix(matrix, 1), True)
+        self.assertEqual(self.sln.searchMatrix([], 1), False)
+        self.assertEqual(self.sln.searchMatrix([[]], 1), False)
+
     def test_combine(self):
         ret = self.sln.combine(4, 2)
         self.assertEqual(ret, [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
