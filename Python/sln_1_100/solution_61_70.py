@@ -1,6 +1,38 @@
 # -*- coding: utf-8 -*-
+from common_utils import *
+
 
 class Solution_61_70(object):
+    def rotateRight(self, head, k):
+        """
+        61
+        :param head:
+        :param k:
+        :return:
+        """
+        if not head or not head.next:
+            return head
+
+        list_len = 1
+
+        node = head
+        while node.next:
+            list_len += 1
+            node = node.next
+        last_node = node
+        node = head.next
+        prev_node = head
+        if k % list_len == 0:
+            new_head = head
+        else:
+            for _ in range(list_len - k % list_len - 1):
+                prev_node = prev_node.next
+                node = node.next
+            new_head = node
+            prev_node.next = None
+            last_node.next = head
+        return new_head
+
     def addBinary(self, a, b):
         """
         67
