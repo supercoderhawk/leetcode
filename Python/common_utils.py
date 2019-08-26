@@ -15,6 +15,18 @@ def print_linked_list(head):
         node = node.next
     print(s)
 
+
+def build_linked_list(arr):
+    head = node = None
+    for val in arr:
+        if head is None:
+            head = node = ListNode(val)
+        else:
+            node.next = ListNode(val)
+            node = node.next
+    return head
+
+
 class Interval:
     def __init__(self, s=0, e=0):
         self.start = s
