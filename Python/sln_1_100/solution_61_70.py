@@ -43,24 +43,25 @@ class Solution_61_70(object):
         if not obstacleGrid or not obstacleGrid[0]:
             return 0
 
-        horizon_len = len(obstacleGrid) - 1
-        vertical_len = len(obstacleGrid[0]) - 1
-        count = [0]
+        horizon_len = len(obstacleGrid)
+        vertical_len = len(obstacleGrid[0])
 
-        def is_valid(horizon_idx, vertical_idx):
-            if obstacleGrid[horizon_idx][vertical_idx] != 0:
-                return
-            if horizon_idx == horizon_len and vertical_idx == vertical_len:
-                count[0] += 1
-                return
-
-            if horizon_idx < horizon_len:
-                is_valid(horizon_idx + 1, vertical_idx)
-            if vertical_idx < vertical_len:
-                is_valid(horizon_idx, vertical_idx + 1)
-
-        is_valid(0, 0)
-        return count[0]
+        obstacleMatrix = [[0 for j in range(vertical_len)] for i in range(horizon_len)]
+        if obstacleGrid[0][0] == 1:
+            return 0
+        obstacleMatrix[0][0] = 1
+        for i in range(horizon_len):
+            for j in range(vertical_len):
+                if i == 0 and j == 0:
+                    continue
+                count = 0
+                if obstacleGrid[i][j] == 0:
+                    if i:
+                        count += obstacleMatrix[i - 1][j]
+                    if j:
+                        count += obstacleMatrix[i][j - 1]
+                obstacleMatrix[i][j] = count
+        return obstacleMatrix[-1][-1]
 
     def addBinary(self, a, b):
         """

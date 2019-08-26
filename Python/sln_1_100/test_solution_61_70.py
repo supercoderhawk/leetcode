@@ -34,4 +34,4 @@ class TestSolution_61_70(TestCase):
             [0, 0, 0]
         ]
         ret = self.sln.uniquePathsWithObstacles(matrix)
-        print(ret)
+        self.assertEqual(ret, 2)
