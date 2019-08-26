@@ -135,3 +135,27 @@ class Solution_51_60:
             direction_index = (direction_index + 1) % 4
 
         return matrix
+
+    def getPermutation(self, n, k):
+        """
+        60
+        :param n:
+        :param k:
+        :return:
+        """
+        factorial = 1
+        for i in range(1, n + 1):
+            factorial *= i
+        digits = [str(d) for d in range(1, n + 1)]
+        perm_digits = []
+        for index in range(n, 0, -1):
+            current_digit = (k - 1) // (factorial // index) + 1
+            if current_digit:
+                k = (k - 1) % (factorial // index) + 1
+                factorial //= index
+                perm_digits.append(digits.pop(current_digit - 1))
+            else:
+                perm_digits += digits
+                break
+
+        return ''.join(perm_digits)

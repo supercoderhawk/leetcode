@@ -27,3 +27,10 @@ class TestSolution_51_60(TestCase):
     def test_generateMatrix(self):
         matrix = self.sln.generateMatrix(3)
         self.assertEqual(matrix, [[1, 2, 3], [8, 9, 4], [7, 6, 5]])
+
+    def test_getPermutation(self):
+        self.assertEqual(self.sln.getPermutation(3, 3),'213')
+        self.assertEqual(self.sln.getPermutation(3, 5),'312')
+        self.assertEqual(self.sln.getPermutation(1, 1),'1')
+        self.assertEqual(self.sln.getPermutation(2, 2),'21')
+        self.assertEqual(self.sln.getPermutation(4, 2),'1243')
