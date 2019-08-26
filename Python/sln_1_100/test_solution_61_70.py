@@ -26,3 +26,12 @@ class TestSolution_61_70(TestCase):
     def test_addBinary(self):
         ret = self.sln.addBinary('11', '1')
         print(ret)
+
+    def test_uniquePathsWithObstacles(self):
+        matrix = [
+            [0, 0, 0],
+            [0, 1, 0],
+            [0, 0, 0]
+        ]
+        ret = self.sln.uniquePathsWithObstacles(matrix)
+        print(ret)

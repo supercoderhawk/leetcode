@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from typing import *
 from common_utils import *
 
 
@@ -32,6 +33,34 @@ class Solution_61_70(object):
             prev_node.next = None
             last_node.next = head
         return new_head
+
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        """
+        63
+        :param obstacleGrid:
+        :return:
+        """
+        if not obstacleGrid or not obstacleGrid[0]:
+            return 0
+
+        horizon_len = len(obstacleGrid) - 1
+        vertical_len = len(obstacleGrid[0]) - 1
+        count = [0]
+
+        def is_valid(horizon_idx, vertical_idx):
+            if obstacleGrid[horizon_idx][vertical_idx] != 0:
+                return
+            if horizon_idx == horizon_len and vertical_idx == vertical_len:
+                count[0] += 1
+                return
+
+            if horizon_idx < horizon_len:
+                is_valid(horizon_idx + 1, vertical_idx)
+            if vertical_idx < vertical_len:
+                is_valid(horizon_idx, vertical_idx + 1)
+
+        is_valid(0, 0)
+        return count[0]
 
     def addBinary(self, a, b):
         """
