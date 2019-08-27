@@ -3,6 +3,26 @@ from typing import List
 
 
 class Solution_91_100(object):
+    def numDecodings(self, s: str) -> int:
+        """
+        91
+        :param s:
+        :return:
+        """
+        prefix2num = {}
+        for i in range(len(s)):
+            candidate = s[:i + 1]
+            prefix1 = candidate[:-1]
+            prefix2 = candidate[:-2]
+            count = 0
+            if int(candidate[-1]) > 0:
+                count += prefix2num.get(prefix1, 1)
+            if 10 <= int(candidate[-2:]) <= 26:
+                count += prefix2num.get(prefix2, 1)
+            if candidate:
+                prefix2num[candidate] = count
+        return prefix2num[s]
+
     def restoreIpAddresses(self, s: str) -> List[str]:
         """
         93
