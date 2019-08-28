@@ -14,6 +14,7 @@ def print_linked_list(head):
             s += '->'
         node = node.next
     print(s)
+    return s
 
 
 def build_linked_list(arr):
