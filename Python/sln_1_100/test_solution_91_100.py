@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
+from common_utils import *
 from sln_1_100.solution_91_100 import Solution_91_100
 
 
@@ -14,6 +15,16 @@ class Test_Solution_91_100(TestCase):
         self.assertEqual(self.sln.numDecodings("10"), 1)
         self.assertEqual(self.sln.numDecodings("12"), 2)
         self.assertEqual(self.sln.numDecodings("226"), 3)
+
+    def test_reverseBetween(self):
+        ret = self.sln.reverseBetween(build_linked_list([1, 2, 3, 4, 5]), 2, 4)
+        assert print_linked_list(ret) == '1->4->3->2->5'
+
+        ret = self.sln.reverseBetween(build_linked_list([1, 2, 3, 4, 5]), 1, 4)
+        assert print_linked_list(ret) == '4->3->2->1->5'
+
+        ret = self.sln.reverseBetween(build_linked_list([1, 2, 3, 4, 5]), 2, 5)
+        print_linked_list(ret)
 
     def test_restoreIpAddresses(self):
         ret = self.sln.restoreIpAddresses("25525511135")

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from typing import List
+from common_utils import ListNode
 
 
 class Solution_91_100(object):
@@ -22,6 +23,49 @@ class Solution_91_100(object):
             if candidate:
                 prefix2num[candidate] = count
         return prefix2num[s]
+
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        """
+        92
+        :param head:
+        :param m:
+        :param n:
+        :return:
+        """
+        if m == n:
+            return head
+        infix_tail = None
+        infix_head = None
+        node = None
+        idx = 1
+        while idx < m:
+            if node is None:
+                node = head
+            else:
+                node = node.next
+            idx += 1
+        prefix_tail = node
+
+        while idx <= n:
+            if node is None:
+                node = head
+            else:
+                node = node.next
+            infix_node = ListNode(node.val)
+            if infix_head is None:
+                infix_head = infix_tail = infix_node
+            else:
+                infix_node.next = infix_head
+                infix_head = infix_node
+
+            idx += 1
+        if prefix_tail is None:
+            new_head = infix_head
+        else:
+            new_head = head
+            prefix_tail.next = infix_head
+        infix_tail.next = node.next
+        return new_head
 
     def restoreIpAddresses(self, s: str) -> List[str]:
         """
