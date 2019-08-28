@@ -125,3 +125,46 @@ class Solution_71_80(object):
 
         backtrace()
         return results
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        """
+        79
+        :param board:
+        :param word:
+        :return:
+        """
+        if not board or not board[0]:
+            return False
+        if not word:
+            return False
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == word[0]:
+                    path = {(i, j)}
+                    is_valid = self.check_valid(board, path, word[1:], i, j)
+                    if is_valid:
+                        return True
+        return False
+
+    def check_valid(self, board, path, word, i, j):
+        if not word:
+            return True
+
+        if i > 0 and board[i - 1][j] == word[0] and (i - 1, j) not in path:
+            is_valid = self.check_valid(board, path | {(i - 1, j)}, word[1:], i - 1, j)
+            if is_valid:
+                return True
+        if i < len(board) - 1 and board[i + 1][j] == word[0] and (i + 1, j) not in path:
+            is_valid = self.check_valid(board, path | {(i + 1, j)}, word[1:], i + 1, j)
+            if is_valid:
+                return True
+        if j > 0 and board[i][j - 1] == word[0] and (i, j - 1) not in path:
+            is_valid = self.check_valid(board, path | {(i, j - 1)}, word[1:], i, j - 1)
+            if is_valid:
+                return True
+        if j < len(board[0]) - 1 and board[i][j + 1] == word[0] and (i, j + 1) not in path:
+            is_valid = self.check_valid(board, path | {(i, j + 1)}, word[1:], i, j + 1)
+            if is_valid:
+                return True
+        return False

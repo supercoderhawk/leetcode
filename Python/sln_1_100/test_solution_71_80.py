@@ -44,3 +44,13 @@ class TestSolution_71_80(TestCase):
         arr1 = [2, 0, 1]
         self.sln.sortColors(arr1)
         assert arr1 == [0, 1, 2]
+
+    def test_exist(self):
+        board = [
+            ['A', 'B', 'C', 'E'],
+            ['S', 'F', 'C', 'S'],
+            ['A', 'D', 'E', 'E']
+        ]
+        self.assertEqual(self.sln.exist(board, 'ABCCED'), True)
+        self.assertEqual(self.sln.exist(board, 'SEE'), True)
+        self.assertEqual(self.sln.exist(board, 'ABCB'), False)
