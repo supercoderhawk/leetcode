@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from typing import List
-from common_utils import ListNode
+from common_utils import ListNode, TreeNode
 
 
 class Solution_91_100(object):
@@ -107,3 +107,19 @@ class Solution_91_100(object):
         resolve_ip([], s, None)
 
         return results
+
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        """
+        100
+        :param p:
+        :param q:
+        :return:
+        """
+
+        if p and q and p.val == q.val:
+            is_left = self.isSameTree(p.left, q.left)
+            is_right = self.isSameTree(p.right, q.right)
+            return is_left and is_right
+        if not p and not q:
+            return True
+        return False
