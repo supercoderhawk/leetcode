@@ -81,6 +81,27 @@ class Solution_71_80(object):
             return True
         return False
 
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        75
+        Do not return anything, modify nums in-place instead.
+        """
+        prefix_idx = 0
+        suffix_idx = len(nums) - 1
+        idx = 0
+        while idx <= suffix_idx:
+            num = nums[idx]
+
+            if num == 0 and idx > prefix_idx:
+                nums[prefix_idx], nums[idx] = nums[idx], nums[prefix_idx]
+                prefix_idx += 1
+                idx -= 1
+            elif num == 2 and idx < suffix_idx:
+                nums[suffix_idx], nums[idx] = nums[idx], nums[suffix_idx]
+                suffix_idx -= 1
+                idx -= 1
+            idx += 1
+
     def combine(self, n: int, k: int) -> List[List[int]]:
         """
         77

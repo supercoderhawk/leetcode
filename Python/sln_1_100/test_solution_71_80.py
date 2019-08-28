@@ -36,3 +36,11 @@ class TestSolution_71_80(TestCase):
     def test_combine(self):
         ret = self.sln.combine(4, 2)
         self.assertEqual(ret, [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]])
+
+    def test_sortColors(self):
+        arr = [2, 0, 2, 1, 1, 0]
+        self.sln.sortColors(arr)
+        assert arr == [0, 0, 1, 1, 2, 2]
+        arr1 = [2, 0, 1]
+        self.sln.sortColors(arr1)
+        assert arr1 == [0, 1, 2]
