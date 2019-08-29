@@ -35,3 +35,12 @@ class TestSolution_61_70(TestCase):
         ]
         ret = self.sln.uniquePathsWithObstacles(matrix)
         self.assertEqual(ret, 2)
+
+    def test_minPathSum(self):
+        grid = [
+            [1, 3, 1],
+            [1, 5, 1],
+            [4, 2, 1]
+        ]
+        min_path = self.sln.minPathSum(grid)
+        self.assertEqual(min_path, 7)
