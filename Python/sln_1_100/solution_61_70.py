@@ -63,6 +63,33 @@ class Solution_61_70(object):
                 obstacleMatrix[i][j] = count
         return obstacleMatrix[-1][-1]
 
+    def minPathSum(self, grid: List[List[int]]) -> int:
+        """
+        64
+        :param grid:
+        :return:
+        """
+        if not grid or not grid[0]:
+            return 0
+        if len(grid) == 1:
+            return sum(grid[0])
+        if len(grid[0]) == 1:
+            return sum(i[0] for i in grid)
+        min_sum = [[-1] * len(grid[0]) for i in range(len(grid))]
+        min_sum[0][0] = grid[0][0]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i == 0 and j == 0:
+                    continue
+                if i == 0:
+                    min_sum[i][j] = grid[i][j] + min_sum[i][j - 1]
+                elif j == 0:
+                    min_sum[i][j] = grid[i][j] + min_sum[i - 1][j]
+                else:
+                    min_sum[i][j] = min(min_sum[i][j - 1], min_sum[i - 1][j]) + grid[i][j]
+        return min_sum[len(grid)-1][len(grid[0])-1]
+
+
     def addBinary(self, a, b):
         """
         67
