@@ -108,6 +108,26 @@ class Solution_91_100(object):
 
         return results
 
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        """
+        94
+        :param root:
+        :return:
+        """
+        result = []
+
+        def traversal(node):
+            if not node:
+                return
+            if node.left:
+                traversal(node.left)
+            result.append(node.val)
+            if node.right:
+                traversal(node.right)
+
+        traversal(root)
+        return result
+
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         """
         100
