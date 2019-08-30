@@ -4,6 +4,28 @@ from common_utils import ListNode
 
 
 class Solution_81_90(object):
+    def removeDuplicates(self, nums: List[int]) -> int:
+        """
+        80
+        :param nums:
+        :return:
+        """
+
+        if len(nums) <= 2:
+            return 2
+        indicator = nums[0] ^ nums[1]
+        idx = 1
+        actual_len = len(nums)
+        while idx < actual_len - 1:
+            new_indicator = nums[idx] ^ nums[idx + 1]
+            if indicator == 0 and new_indicator == 0:
+                nums[idx:] = nums[idx + 1:]
+                actual_len -= 1
+                idx -= 1
+            idx += 1
+            indicator = new_indicator
+        return actual_len
+
     def partition(self, head: ListNode, x: int) -> ListNode:
         """
         86

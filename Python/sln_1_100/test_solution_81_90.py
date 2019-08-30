@@ -8,6 +8,12 @@ class Test_Solution_81_90(TestCase):
     def setUp(self) -> None:
         self.sln = Solution_81_90()
 
+    def test_removeDuplicates(self):
+        arr = [1, 1, 1, 2, 2, 3]
+        self.assertEqual(self.sln.removeDuplicates(arr), 5)
+        arr1 = [1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 5]
+        self.assertEqual(self.sln.removeDuplicates(arr1), 9)
+
     def test_partition(self):
         head = build_linked_list([1, 4, 3, 2, 5, 2])
         ret = self.sln.partition(head, 3)
