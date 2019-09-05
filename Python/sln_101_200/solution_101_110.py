@@ -11,6 +11,27 @@ class TreeNode:
 
 
 class Solution_101_110(object):
+    def is_mirror(self, node1, node2):
+        if not node1 and not node2:
+            return True
+        elif not node1 or not node2:
+            return False
+        else:
+            node_judge = node1.val == node2.val
+            left_judge = self.is_mirror(node1.left, node2.right)
+            right_judge = self.is_mirror(node1.right, node2.left)
+            return node_judge and left_judge and right_judge
+
+    def isSymmetric(self, root: TreeNode) -> bool:
+        """
+        101
+        :param root:
+        :return:
+        """
+        if not root:
+            return True
+        return self.is_mirror(root, root)
+
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         """
         102
