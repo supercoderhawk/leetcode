@@ -68,3 +68,27 @@ class Solution_101_110(object):
         right_depth = self.maxDepth(root.right) + 1
 
         return left_depth if left_depth > right_depth else right_depth
+
+    def isBalanced(self, root: TreeNode) -> bool:
+        """
+        110
+        :param root:
+        :return:
+        """
+        if not root:
+            return True
+
+        def is_sub_tree_balanced(node):
+            if not node:
+                return True
+            is_left_balanced = is_sub_tree_balanced(node.left)
+            is_right_balanced = is_sub_tree_balanced(node.right)
+            if not is_left_balanced or not is_right_balanced:
+                return False
+            left_depth = self.maxDepth(node.left)
+            right_depth = self.maxDepth(node.right)
+            if abs(left_depth - right_depth) <= 1:
+                return True
+            else:
+                return False
+        return is_sub_tree_balanced(root)
