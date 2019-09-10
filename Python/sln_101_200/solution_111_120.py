@@ -1,8 +1,28 @@
 # -*- coding: utf-8 -*-
 from typing import List
+from common_utils import *
 
 
 class Solution_111_120(object):
+    def minDepth(self, root: TreeNode) -> int:
+        """
+        111
+        :param root:
+        :return:
+        """
+        if not root:
+            return 0
+        if root.left and root.right:
+            left_depth = self.minDepth(root.left)
+            right_depth = self.minDepth(root.right)
+            return min(left_depth, right_depth) + 1
+        elif not root.left and not root.right:
+            return 1
+        elif not root.right:
+            return self.minDepth(root.left) + 1
+        else:
+            return self.minDepth(root.right) + 1
+
     def generate(self, numRows: int) -> List[List[int]]:
         """
         118
