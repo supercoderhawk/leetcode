@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import copy
 from typing import List
 
 
@@ -80,3 +81,20 @@ class Solution_31_40:
         :param target:
         :return:
         """
+        candidates = sorted(candidates)
+        results = []
+        self.recursive_search(candidates, target, target, 0, [], results)
+        return results
+
+    def recursive_search(self, candidiates, remain_target, target, start_idx, current_list, results):
+        if remain_target == 0:
+            results.append(copy.deepcopy(current_list))
+        else:
+            for idx in range(start_idx, len(candidiates)):
+                if remain_target - candidiates[idx] >= 0:
+                    current_list.append(candidiates[idx])
+                    self.recursive_search(candidiates, remain_target - candidiates[idx], target,
+                                          idx, current_list, results)
+                    current_list.pop()
+                else:
+                    break

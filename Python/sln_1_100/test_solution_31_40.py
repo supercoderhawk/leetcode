@@ -35,3 +35,7 @@ class TestSolution_31_40(TestCase):
     def test_countAndSay(self):
         self.assertEqual(self.sln.countAndSay(2), '11')
         self.assertEqual(self.sln.countAndSay(4), '1211')
+
+    def test_combinationSum(self):
+        ret = self.sln.combinationSum([2, 3, 6, 7], 7)
+        print(ret)
