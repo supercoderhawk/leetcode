@@ -98,3 +98,29 @@ class Solution_31_40:
                     current_list.pop()
                 else:
                     break
+
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        """
+
+        :param candidates:
+        :param target:
+        :return:
+        """
+        candidates = sorted(candidates)
+        results = []
+        self.recursive_search2(candidates, target, target, 0, [], results)
+        return results
+
+    def recursive_search2(self, candidates, remain_target, target, start_idx, current_list, results):
+        if remain_target == 0:
+            if current_list not in results:
+                results.append(copy.deepcopy(current_list))
+        else:
+            for idx in range(start_idx, len(candidates)):
+                if remain_target - candidates[idx] >= 0:
+                    current_list.append(candidates[idx])
+                    self.recursive_search2(candidates, remain_target - candidates[idx], target,
+                                          idx + 1, current_list, results)
+                    current_list.pop()
+                else:
+                    break

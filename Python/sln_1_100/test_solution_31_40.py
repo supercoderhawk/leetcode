@@ -38,4 +38,8 @@ class TestSolution_31_40(TestCase):
 
     def test_combinationSum(self):
         ret = self.sln.combinationSum([2, 3, 6, 7], 7)
-        print(ret)
+        assert ret == [[2, 2, 3], [7]]
+
+    def test_combinationSum2(self):
+        ret = self.sln.combinationSum2([10, 1, 2, 7, 6, 1, 5], 8)
+        assert ret == [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
