@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
 from sln_101_200.solution_101_110 import Solution_101_110, TreeNode
+from common_utils import build_binary_tree
 
 
 class TestSolution_101_110(TestCase):
@@ -21,3 +22,7 @@ class TestSolution_101_110(TestCase):
         root.right = right_1
         depth = self.sln.maxDepth(root)
         self.assertEqual(depth, 4)
+
+    def test_zigzagLevelOrder(self):
+        tree = build_binary_tree([3, 9, 20, None, None, 15, 7])
+        self.assertEqual(self.sln.zigzagLevelOrder(tree), [[3], [20, 9], [15, 7]])

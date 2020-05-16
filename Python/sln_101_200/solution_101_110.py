@@ -55,6 +55,38 @@ class Solution_101_110(object):
         recursive_tree(0, root)
         return results
 
+    def zigzagLevelOrder(self, root: TreeNode) -> List[List[int]]:
+        """
+        103
+        :param root:
+        :return:
+        """
+        if not root:
+            return []
+        node_list = [root]
+        next_node_list = []
+        zigzag_list = []
+        idx = 0
+
+        while node_list:
+            zigzag = []
+            for node in node_list:
+                if idx//2:
+                    zigzag.append(node.val)
+                else:
+                    zigzag.insert(0, node.val)
+                if node.left:
+                    next_node_list.append(node.left)
+                if node.right:
+                    next_node_list.append(node.right)
+
+            node_list = next_node_list
+            next_node_list = []
+            zigzag_list.append(zigzag)
+            idx += 1
+
+        return zigzag_list
+
     def maxDepth(self, root):
         """
         104
@@ -68,6 +100,13 @@ class Solution_101_110(object):
         right_depth = self.maxDepth(root.right) + 1
 
         return left_depth if left_depth > right_depth else right_depth
+
+    def levelOrderBottom(self, root: TreeNode) -> List[List[int]]:
+        """
+        107
+        :param root:
+        :return:
+        """
 
     def isBalanced(self, root: TreeNode) -> bool:
         """
