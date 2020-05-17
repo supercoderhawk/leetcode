@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
 from typing import List
+from common_utils import ListNode
 
 
 class TreeNode:
@@ -107,6 +108,36 @@ class Solution_101_110(object):
         :param root:
         :return:
         """
+
+    def sortedListToBST(self, head: ListNode) -> TreeNode:
+        """
+        109
+        :param head:
+        :return:
+        """
+        if not head:
+            return None
+        mid_node = self.get_mid(head)
+        mid = TreeNode(mid_node.val)
+
+        if mid_node == head:
+            return mid
+
+        mid.left = self.sortedListToBST(head)
+        mid.right = self.sortedListToBST(mid_node.next)
+        return mid
+
+    def get_mid(self, head:ListNode):
+        prev_ptr = None
+        slow_node = fast_node = head
+
+        while fast_node and fast_node.next:
+            prev_ptr = slow_node
+            slow_node = slow_node.next
+            fast_node = fast_node.next.next
+        if prev_ptr:
+            prev_ptr.next = None
+        return slow_node
 
     def isBalanced(self, root: TreeNode) -> bool:
         """

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from unittest import TestCase
 from sln_101_200.solution_101_110 import Solution_101_110, TreeNode
-from common_utils import build_binary_tree
+from common_utils import build_binary_tree,build_linked_list
 
 
 class TestSolution_101_110(TestCase):
@@ -26,3 +26,7 @@ class TestSolution_101_110(TestCase):
     def test_zigzagLevelOrder(self):
         tree = build_binary_tree([3, 9, 20, None, None, 15, 7])
         self.assertEqual(self.sln.zigzagLevelOrder(tree), [[3], [20, 9], [15, 7]])
+
+    def test_sortedListToBST(self):
+        head = build_linked_list([-10,-3,0,5,9])
+        root = self.sln.sortedListToBST(head)
