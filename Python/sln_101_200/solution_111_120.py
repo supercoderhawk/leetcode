@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 from typing import List
 from common_utils import *
 
@@ -22,6 +23,30 @@ class Solution_111_120(object):
             return self.minDepth(root.left) + 1
         else:
             return self.minDepth(root.right) + 1
+
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        """
+        113
+        :param root:
+        :param sum:
+        :return:
+        """
+        path_list = []
+
+        def check_sum(node, val, path):
+            if not node:
+                return
+            if node and node.left is None and node.right is None:
+                if val+node.val == sum:
+                    path.append(node.val)
+                    path_list.append(path)
+                return
+            path.append(node.val)
+            check_sum(node.left, val + node.val, copy.deepcopy(path))
+            check_sum(node.right, val + node.val, copy.deepcopy(path))
+
+        check_sum(root, 0, [])
+        return path_list
 
     def generate(self, numRows: int) -> List[List[int]]:
         """
@@ -63,7 +88,6 @@ class Solution_111_120(object):
             current_row.append(1)
             last_row = current_row
         return last_row
-
 
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         """
